@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container mt-5">
+  <form class="col-6 mx-auto card p-3 shadow-lg" method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <h1 class="mb-2">Login</h1>
+
+    {% if messages %}
+    <div class="alert alert-primary" role='alert'>
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input id="username" name="username" required type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input id="password" name="password" required type="password" class="form-control" autocomplete="current-password">
+    </div>
+
+    <p>New user? <a href="{% url 'register' %}">Register</a></p>
+
+    <button type="submit" class="btn btn-success">Login</button>
+  </form>
+</div>
+{% endblock %}

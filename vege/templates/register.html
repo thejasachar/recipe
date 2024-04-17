@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container mt-5">
+  <form class="col-6 mx-auto card p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+    <h1 class="mb-2">Register</h1>
+    <hr>
+
+    {% if messages %}
+    <div class="alert alert-primary" role='alert'>
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="id_first_name" class="form-label">First Name</label>
+      <input id="id_first_name" name="first_name" required type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_last_name" class="form-label">Last Name</label>
+      <input id="id_last_name" name="last_name" required type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_username" class="form-label">Username</label>
+      <input id="id_username" name="username" required type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_password" class="form-label">Password</label>
+      <input id="id_password" name="password1" required type="password" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label for="id_confirm_password" class="form-label">Confirm Password</label>
+      <input id="id_confirm_password" name="password2" required type="password" class="form-control">
+    </div>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+
+    <button type="submit" class="btn btn-success">Register</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block start %}
+    <h1> This is returned by Django server</h1>
+    <a href="/contact/">
+      contact
+  </a>
+  ||
+  <a href="/about/">
+      about
+  </a>
+  <br><br>
+    <table class="container">
+        <tr>
+          <th>S.No</th>
+          <th>name</th>
+          <th>age</th>
+          <th>can vote</th>
+        </tr>
+        {%for people in peoples%}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{people.Name}}</td>
+          <td>{{people.age}}</td>
+          <td {% if people.age <= 18 %} style=background:red {% endif %}>
+            {% if people.age <= 18 %}
+                👎
+            {% else %}
+                👍
+            {% endif %}
+         </td>      
+        </tr>
+        {%endfor%}
+      </table>
+ {% endblock %}
